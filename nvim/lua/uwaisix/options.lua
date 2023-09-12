@@ -43,4 +43,6 @@ end
 
 -- vim.opt.iskeyword:append "-"
 vim.opt.runtimepath:remove("/usr/share/vim/vimfiles")
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 require('plugins.colorscheme.themery-auto')

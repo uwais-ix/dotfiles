@@ -51,6 +51,7 @@ return {
     local nvim_tree = require("nvim-tree")
     nvim_tree.setup({
       on_attach = my_on_attach,
+      disable_netrw = true,
       update_focused_file = {
         enable = true,
         update_cwd = true,
@@ -85,7 +86,7 @@ return {
       },
       diagnostics = {
         enable = true,
-        show_on_dirs = true,
+        show_on_dirs = false,
         icons = {
           hint = "",
           info = "",

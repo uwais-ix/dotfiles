@@ -1,16 +1,13 @@
 local opts = { noremap = true, silent = true }
 local keymap = vim.keymap.set
 
--- normal --
--- exp
 -- keymap("n", "<leader> ", vim.cmd.Ex, opts)
 -- keymap("n", "<leader>e", ":Lex 30<CR>", opts)
-keymap("n", "<leader>e", ":NvimTreeToggle<CR>")
-keymap("n", "<leader> ", ":NvimTreeFocus<CR>")
-keymap("n", "<C-f>", ":lua vim.lsp.buf.format{async=true}<CR>")
-
---
+-- keymap("n", "<leader>e", ":NvimTreeToggle<CR>")
 -- keymap("n", "<leader><leader>", ":nohl<CR>", opts)
+
+keymap("n", "<C-n>", ":NvimTreeFocus<CR>")
+--
 -- window
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
