@@ -5,6 +5,10 @@ local keymap = vim.keymap.set
 -- keymap("n", "<leader>e", ":Lex 30<CR>", opts)
 -- keymap("n", "<leader>e", ":NvimTreeToggle<CR>")
 -- keymap("n", "<leader><leader>", ":nohl<CR>", opts)
+--
+keymap("i", "jk", "<esc>", opts)
+keymap("i", "kj", "<esc>", opts)
+--
 
 keymap("n", "<C-n>", ":NvimTreeFocus<CR>")
 --
@@ -34,9 +38,20 @@ keymap("v", "p", '"_dP', opts)
 -- end --
 
 -- terminal --
--- local termopts = { silent = true }
--- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
--- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
--- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
--- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+function _G.set_terminal_keymaps()
+  local opts = { buffer = 0 }
+  vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
+  vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts)
+  vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
+  vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
+  vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
+  vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
+  vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
+end
+
+require("plugins.keybinding.term_bindings")
+
+-- if you only want these mappings for toggle term use term://*toggleterm#* instead
+vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+vim.cmd("autocmd TermClose * execute 'close!'")
 -- end --

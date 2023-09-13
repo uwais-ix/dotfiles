@@ -17,13 +17,20 @@ return {
         q = {
           name = "close",
           w = { "close all buffers: keep layout", noremap = false },
-          a = { "<cmd>wa<CR> <cmd>bufdo  :Bdelete <CR>", "save & close all buffers: discard layout" },
-          q = { "<cmd>wqa<CR>", "save & exit", noremap = false },
+          a = { "<cmd>wall<CR> <cmd>bufdo  :Bdelete <CR>", "save & close all buffers: discard layout" },
+          q = { "<cmd>wall|qa!<CR>", "save & exit", noremap = false },
           n = { "close buffers w/ no windows" },
+        },
+        h = {
+          name = "harpoon",
+          o = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", "open harpoon", noremap = false },
+          a = { "<cmd>lua require('harpoon.mark').add_file()<CR>", "mark file", noremap = false },
         },
         ["<leader>"] = {
           name = "other",
           n = { "<cmd>nohl<CR>", "nohl", noremap = false },
+          ["?"] = { "<cmd>CheatSheet<CR>", "cheatsheet", noremap = false },
+          t = { "<cmd>Themery<CR>", "themery", noremap = false },
         },
         d = {
           name = "diagnostic",
@@ -32,18 +39,26 @@ return {
           p = { "<cmd>lua nvim.diagnostic.goto_prev()<CR>", "prev diag", noremap = false },
           l = { "<cmd>lua nvim.diagnostic.setloclist()<CR>", "list diag", noremap = false },
         },
-        s = {
-          name = "session",
-          l = { "list session", noremap = false },
-          n = { "new session", noremap = false },
-          d = { "delete session", noremap = false },
-          u = { "update session", noremap = false },
-        },
+        -- s = {
+        -- 	name = "session",
+        -- 	l = { "list session", noremap = false },
+        -- 	n = { "new session", noremap = false },
+        -- 	d = { "delete session", noremap = false },
+        -- 	u = { "update session", noremap = false },
+        -- },
         f = {
           name = "file",
           f = { "<cmd>Telescope find_files<CR>", "find files" },
           g = { "<cmd>Telescope git_files<CR>", "git files" },
           s = { "<cmd>Telescope live_grep<CR>", "grep" },
+        },
+        t = {
+          name = "terminal",
+          b = { "<cmd>lua _uwais_toggleterm('btop')<CR>", "toggle btop", noremap = false },
+          h = { "<cmd>lua _uwais_toggleterm('htop')<CR>", "toggle htop", noremap = false },
+          g = { "<cmd>lua _uwais_toggleterm('lazygit')<CR>", "toggle lazygit", noremap = false },
+          n = { "<cmd>lua _uwais_toggleterm('node')<CR>", "toggle node", noremap = false },
+          p = { "<cmd>lua _uwais_toggleterm('python')<CR>", "toggle python", noremap = false },
         },
       },
       [" "] = {
@@ -54,8 +69,10 @@ return {
         s = { "<C-W>s", "horizontal split", noremap = false },
         f = { "format" },
         D = { "type definition" },
+        t = { "<cmd>TermSelect<CR>", "terminal: select", noremap = false },
         ["rn"] = { "buffer rename" },
         ["ca"] = { "code action" },
+        [" "] = {"<cmd>ToggleTermSetName<CR>", "terminal: rename", noremap = false, mode = "t"}
       },
       g = {
         name = "goto",
