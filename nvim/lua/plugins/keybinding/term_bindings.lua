@@ -1,4 +1,4 @@
-local Terminal = require("toggleterm.terminal").Terminal
+local Terminal = require('toggleterm.terminal').Terminal
 
 local get_term = function()
   local active = {}
@@ -17,17 +17,17 @@ local term = get_term()
 
 function _uwais_toggleterm(name)
   local terminals = {
-    btop = term("btop", { cmd = "btop", hidden = true }),
-    htop = term("htop", { cmd = "htop", hidden = true }),
-    lazygit = term("lazygit", { cmd = "lazygit", hidden = true }),
-    node = term("node", { cmd = "node", hidden = true }),
-    python = term("python", { cmd = "python", hidden = true }),
+    btop = term('btop', { cmd = 'btop', hidden = true }),
+    htop = term('htop', { cmd = 'htop', hidden = true }),
+    lazygit = term('lazygit', { cmd = 'lazygit', hidden = true }),
+    node = term('node', { cmd = 'node', hidden = true }),
+    python = term('python', { cmd = 'python', hidden = true }),
   }
 
   local terminal = terminals[name]
   if terminal == nil then
-    vim.notify("Invalid name " .. name .. " _uwais_toggleterm", "error", {
-      title = "_uwais_toggleterm",
+    vim.notify('Invalid name ' .. name .. ' _uwais_toggleterm', 'error', {
+      title = '_uwais_toggleterm',
     })
     return
   end

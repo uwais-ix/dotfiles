@@ -1,7 +1,7 @@
 return {
-  "AckslD/nvim-neoclip.lua",
+  'AckslD/nvim-neoclip.lua',
   dependencies = {
-    'kkharji/sqlite.lua'
+    'kkharji/sqlite.lua',
   },
   config = function()
     require('neoclip').setup({
@@ -9,7 +9,7 @@ return {
       enable_persistent_history = false,
       length_limit = 1048576,
       continuous_sync = false,
-      db_path = vim.fn.stdpath("data") .. "/databases/neoclip.sqlite3",
+      db_path = vim.fn.stdpath('data') .. '/databases/neoclip.sqlite3',
       filter = nil,
       preview = true,
       prompt = nil,
@@ -43,7 +43,7 @@ return {
             paste_behind = '<c-k>',
             replay = '<c-q>', -- replay a macro
             delete = '<c-d>', -- delete an entry
-            edit = '<c-e>',   -- edit an entry
+            edit = '<c-e>', -- edit an entry
             custom = {},
           },
           n = {

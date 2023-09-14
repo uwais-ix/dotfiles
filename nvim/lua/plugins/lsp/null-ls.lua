@@ -8,12 +8,16 @@ return {
 
     null_ls.setup({
       sources = {
-        formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
-        formatting.black.with({ extra_args = { "--fast" } }),
-        formatting.stylua,
+        formatting.prettier.with({
+          extra_args = { '', '--no-semi=true', '--single-quote=true', '--jsx-single-quote' },
+        }),
+        formatting.black.with({ extra_args = { '--fast' } }),
+        formatting.stylua.with({
+          extra_args = { '--indent-type=Spaces', '--quote-style=AutoPreferSingle', '--indent-width=2' },
+        }),
         -- diagnostics.eslint,
         -- completion.spell
-      }
+      },
     })
-  end
+  end,
 }

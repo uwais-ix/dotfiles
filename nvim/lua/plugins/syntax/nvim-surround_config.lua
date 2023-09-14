@@ -1,105 +1,105 @@
-local input = require("nvim-surround.input")
-local functional = require("nvim-surround.functional")
+local input = require('nvim-surround.input')
+local functional = require('nvim-surround.functional')
 
 local M = {}
 
 ---@type user_options
 M.default_opts = {
   keymaps = {
-    insert = "<C-g>s",
-    insert_line = "<C-g>S",
-    normal = "ys",
-    normal_cur = "yss",
-    normal_line = "yS",
-    normal_cur_line = "ySS",
-    visual = "S",
-    visual_line = "gS",
-    delete = "ds",
-    change = "cs",
-    change_line = "cS",
+    insert = '<C-g>s',
+    insert_line = '<C-g>S',
+    normal = 'ys',
+    normal_cur = 'yss',
+    normal_line = 'yS',
+    normal_cur_line = 'ySS',
+    visual = 'S',
+    visual_line = 'gS',
+    delete = 'ds',
+    change = 'cs',
+    change_line = 'cS',
   },
   surrounds = {
-    ["("] = {
-      add = { "( ", " )" },
+    ['('] = {
+      add = { '( ', ' )' },
       find = function()
-        return M.get_selection({ motion = "a(" })
+        return M.get_selection({ motion = 'a(' })
       end,
-      delete = "^(. ?)().-( ?.)()$",
+      delete = '^(. ?)().-( ?.)()$',
     },
-    [")"] = {
-      add = { "(", ")" },
+    [')'] = {
+      add = { '(', ')' },
       find = function()
-        return M.get_selection({ motion = "a)" })
+        return M.get_selection({ motion = 'a)' })
       end,
-      delete = "^(.)().-(.)()$",
+      delete = '^(.)().-(.)()$',
     },
-    ["{"] = {
-      add = { "{ ", " }" },
+    ['{'] = {
+      add = { '{ ', ' }' },
       find = function()
-        return M.get_selection({ motion = "a{" })
+        return M.get_selection({ motion = 'a{' })
       end,
-      delete = "^(. ?)().-( ?.)()$",
+      delete = '^(. ?)().-( ?.)()$',
     },
-    ["}"] = {
-      add = { "{", "}" },
+    ['}'] = {
+      add = { '{', '}' },
       find = function()
-        return M.get_selection({ motion = "a}" })
+        return M.get_selection({ motion = 'a}' })
       end,
-      delete = "^(.)().-(.)()$",
+      delete = '^(.)().-(.)()$',
     },
-    ["<"] = {
-      add = { "< ", " >" },
+    ['<'] = {
+      add = { '< ', ' >' },
       find = function()
-        return M.get_selection({ motion = "a<" })
+        return M.get_selection({ motion = 'a<' })
       end,
-      delete = "^(. ?)().-( ?.)()$",
+      delete = '^(. ?)().-( ?.)()$',
     },
-    [">"] = {
-      add = { "<", ">" },
+    ['>'] = {
+      add = { '<', '>' },
       find = function()
-        return M.get_selection({ motion = "a>" })
+        return M.get_selection({ motion = 'a>' })
       end,
-      delete = "^(.)().-(.)()$",
+      delete = '^(.)().-(.)()$',
     },
-    ["["] = {
-      add = { "[ ", " ]" },
+    ['['] = {
+      add = { '[ ', ' ]' },
       find = function()
-        return M.get_selection({ motion = "a[" })
+        return M.get_selection({ motion = 'a[' })
       end,
-      delete = "^(. ?)().-( ?.)()$",
+      delete = '^(. ?)().-( ?.)()$',
     },
-    ["]"] = {
-      add = { "[", "]" },
+    [']'] = {
+      add = { '[', ']' },
       find = function()
-        return M.get_selection({ motion = "a]" })
+        return M.get_selection({ motion = 'a]' })
       end,
-      delete = "^(.)().-(.)()$",
+      delete = '^(.)().-(.)()$',
     },
     ["'"] = {
       add = { "'", "'" },
       find = function()
         return M.get_selection({ motion = "a'" })
       end,
-      delete = "^(.)().-(.)()$",
+      delete = '^(.)().-(.)()$',
     },
     ['"'] = {
       add = { '"', '"' },
       find = function()
         return M.get_selection({ motion = 'a"' })
       end,
-      delete = "^(.)().-(.)()$",
+      delete = '^(.)().-(.)()$',
     },
-    ["`"] = {
-      add = { "`", "`" },
+    ['`'] = {
+      add = { '`', '`' },
       find = function()
-        return M.get_selection({ motion = "a`" })
+        return M.get_selection({ motion = 'a`' })
       end,
-      delete = "^(.)().-(.)()$",
+      delete = '^(.)().-(.)()$',
     },
-    ["i"] = { -- TODO: Add find/delete/change functions
+    ['i'] = { -- TODO: Add find/delete/change functions
       add = function()
-        local left_delimiter = M.get_input("Enter the left delimiter: ")
-        local right_delimiter = left_delimiter and M.get_input("Enter the right delimiter: ")
+        local left_delimiter = M.get_input('Enter the left delimiter: ')
+        local right_delimiter = left_delimiter and M.get_input('Enter the right delimiter: ')
         if right_delimiter then
           return { { left_delimiter }, { right_delimiter } }
         end
@@ -107,32 +107,32 @@ M.default_opts = {
       find = function() end,
       delete = function() end,
     },
-    ["t"] = {
+    ['t'] = {
       add = function()
-        local user_input = M.get_input("Enter the HTML tag: ")
+        local user_input = M.get_input('Enter the HTML tag: ')
         if user_input then
-          local element = user_input:match("^<?([^%s>]*)")
-          local attributes = user_input:match("^<?[^%s>]*%s+(.-)>?$")
+          local element = user_input:match('^<?([^%s>]*)')
+          local attributes = user_input:match('^<?[^%s>]*%s+(.-)>?$')
 
-          local open = attributes and element .. " " .. attributes or element
+          local open = attributes and element .. ' ' .. attributes or element
           local close = element
 
-          return { { "<" .. open .. ">" }, { "</" .. close .. ">" } }
+          return { { '<' .. open .. '>' }, { '</' .. close .. '>' } }
         end
       end,
       find = function()
-        return M.get_selection({ motion = "at" })
+        return M.get_selection({ motion = 'at' })
       end,
-      delete = "^(%b<>)().-(%b<>)()$",
+      delete = '^(%b<>)().-(%b<>)()$',
       change = {
-        target = "^<([^%s<>]*)().-([^/]*)()>$",
+        target = '^<([^%s<>]*)().-([^/]*)()>$',
         replacement = function()
-          local user_input = M.get_input("Enter the HTML tag: ")
+          local user_input = M.get_input('Enter the HTML tag: ')
           if user_input then
-            local element = user_input:match("^<?([^%s>]*)")
-            local attributes = user_input:match("^<?[^%s>]*%s+(.-)>?$")
+            local element = user_input:match('^<?([^%s>]*)')
+            local attributes = user_input:match('^<?[^%s>]*%s+(.-)>?$')
 
-            local open = attributes and element .. " " .. attributes or element
+            local open = attributes and element .. ' ' .. attributes or element
             local close = element
 
             return { { open }, { close } }
@@ -140,32 +140,32 @@ M.default_opts = {
         end,
       },
     },
-    ["T"] = {
+    ['T'] = {
       add = function()
-        local user_input = M.get_input("Enter the HTML tag: ")
+        local user_input = M.get_input('Enter the HTML tag: ')
         if user_input then
-          local element = user_input:match("^<?([^%s>]*)")
-          local attributes = user_input:match("^<?[^%s>]*%s+(.-)>?$")
+          local element = user_input:match('^<?([^%s>]*)')
+          local attributes = user_input:match('^<?[^%s>]*%s+(.-)>?$')
 
-          local open = attributes and element .. " " .. attributes or element
+          local open = attributes and element .. ' ' .. attributes or element
           local close = element
 
-          return { { "<" .. open .. ">" }, { "</" .. close .. ">" } }
+          return { { '<' .. open .. '>' }, { '</' .. close .. '>' } }
         end
       end,
       find = function()
-        return M.get_selection({ motion = "at" })
+        return M.get_selection({ motion = 'at' })
       end,
-      delete = "^(%b<>)().-(%b<>)()$",
+      delete = '^(%b<>)().-(%b<>)()$',
       change = {
-        target = "^<([^>]*)().-([^/]*)()>$",
+        target = '^<([^>]*)().-([^/]*)()>$',
         replacement = function()
-          local user_input = M.get_input("Enter the HTML tag: ")
+          local user_input = M.get_input('Enter the HTML tag: ')
           if user_input then
-            local element = user_input:match("^<?([^%s>]*)")
-            local attributes = user_input:match("^<?[^%s>]*%s+(.-)>?$")
+            local element = user_input:match('^<?([^%s>]*)')
+            local attributes = user_input:match('^<?[^%s>]*%s+(.-)>?$')
 
-            local open = attributes and element .. " " .. attributes or element
+            local open = attributes and element .. ' ' .. attributes or element
             local close = element
 
             return { { open }, { close } }
@@ -173,81 +173,81 @@ M.default_opts = {
         end,
       },
     },
-    ["f"] = {
+    ['f'] = {
       add = function()
-        local result = M.get_input("Enter the function name: ")
+        local result = M.get_input('Enter the function name: ')
         if result then
-          return { { result .. "(" }, { ")" } }
+          return { { result .. '(' }, { ')' } }
         end
       end,
       find = function()
         if vim.g.loaded_nvim_treesitter then
           local selection = M.get_selection({
             query = {
-              capture = "@call.outer",
-              type = "textobjects",
+              capture = '@call.outer',
+              type = 'textobjects',
             },
           })
           if selection then
             return selection
           end
         end
-        return M.get_selection({ pattern = "[^=%s%(%){}]+%b()" })
+        return M.get_selection({ pattern = '[^=%s%(%){}]+%b()' })
       end,
-      delete = "^(.-%()().-(%))()$",
+      delete = '^(.-%()().-(%))()$',
       change = {
-        target = "^.-([%w_]+)()%(.-%)()()$",
+        target = '^.-([%w_]+)()%(.-%)()()$',
         replacement = function()
-          local result = M.get_input("Enter the function name: ")
+          local result = M.get_input('Enter the function name: ')
           if result then
-            return { { result }, { "" } }
+            return { { result }, { '' } }
           end
         end,
       },
     },
     invalid_key_behavior = {
       add = function(char)
-        if not char or char:find("%c") then
+        if not char or char:find('%c') then
           return nil
         end
         return { { char }, { char } }
       end,
       find = function(char)
-        if not char or char:find("%c") then
+        if not char or char:find('%c') then
           return nil
         end
         return M.get_selection({
-          pattern = vim.pesc(char) .. ".-" .. vim.pesc(char),
+          pattern = vim.pesc(char) .. '.-' .. vim.pesc(char),
         })
       end,
       delete = function(char)
-        if not char or char:find("%c") then
+        if not char or char:find('%c') then
           return nil
         end
         return M.get_selections({
           char = char,
-          pattern = "^(.)().-(.)()$",
+          pattern = '^(.)().-(.)()$',
         })
       end,
     },
   },
   aliases = {
-    ["a"] = ">",
-    ["b"] = ")",
-    ["B"] = "}",
-    ["r"] = "]",
-    ["q"] = { '"', "'", "`" },
-    ["s"] = { "}", "]", ")", ">", '"', "'", "`" },
+    ['a'] = '>',
+    ['b'] = ')',
+    ['B'] = '}',
+    ['r'] = ']',
+    ['q'] = { '"', "'", '`' },
+    ['s'] = { '}', ']', ')', '>', '"', "'", '`' },
   },
   highlight = {
     duration = 0,
   },
-  move_cursor = "begin",
+  move_cursor = 'begin',
   indent_lines = function(start, stop)
     local b = vim.bo
     -- Only re-indent the selection if a formatter is set up already
-    if start < stop and (b.equalprg ~= "" or b.indentexpr ~= "" or b.cindent or b.smartindent or b.lisp) then
-      vim.cmd(string.format("silent normal! %dG=%dG", start, stop))
+    if start < stop and (b.equalprg ~= '' or b.indentexpr ~= '' or b.cindent or b.smartindent or b.lisp) then
+      vim.cmd(string.format('silent normal! %dG=%dG', start, stop))
     end
   end,
 }
@@ -272,15 +272,15 @@ M.get_selection = function(args)
   if args.char then
     return M.get_find(args.char)(args.char)
   elseif args.motion then
-    return require("nvim-surround.motions").get_selection(args.motion)
+    return require('nvim-surround.motions').get_selection(args.motion)
   elseif args.node then
-    return require("nvim-surround.treesitter").get_selection(args.node)
+    return require('nvim-surround.treesitter').get_selection(args.node)
   elseif args.pattern then
-    return require("nvim-surround.patterns").get_selection(args.pattern)
+    return require('nvim-surround.patterns').get_selection(args.pattern)
   elseif args.query then
-    return require("nvim-surround.queries").get_selection(args.query.capture, args.query.type)
+    return require('nvim-surround.queries').get_selection(args.query.capture, args.query.type)
   else
-    vim.notify("Invalid key provided for `:h nvim-surround.config.get_selection()`.", vim.log.levels.ERROR)
+    vim.notify('Invalid key provided for `:h nvim-surround.config.get_selection()`.', vim.log.levels.ERROR)
   end
 end
 
@@ -293,7 +293,7 @@ M.get_selections = function(args)
     return nil
   end
   if args.pattern then
-    return require("nvim-surround.patterns").get_selections(selection, args.pattern)
+    return require('nvim-surround.patterns').get_selections(selection, args.pattern)
   elseif args.exclude then
     local outer_selection = M.get_opts().surrounds[args.char].find()
     if not outer_selection then
@@ -317,7 +317,7 @@ M.get_selections = function(args)
     }
     return selections
   else
-    vim.notify("Invalid key provided for `:h nvim-surround.config.get_selections()`.", vim.log.levels.ERROR)
+    vim.notify('Invalid key provided for `:h nvim-surround.config.get_selections()`.', vim.log.levels.ERROR)
   end
 end
 
@@ -341,7 +341,7 @@ end
 ---@nodiscard
 M.get_alias = function(char)
   local aliases = M.get_opts().aliases
-  if type(aliases[char]) == "string" then
+  if type(aliases[char]) == 'string' then
     return aliases[char]
   end
   return char
@@ -362,11 +362,11 @@ M.get_delimiters = function(char, line_mode)
     local rhs = delimiters[2]
 
     -- Trim whitespace after the leading delimiter and before the trailing delimiter
-    lhs[#lhs] = lhs[#lhs]:gsub("%s+$", "")
-    rhs[1] = rhs[1]:gsub("^%s+", "")
+    lhs[#lhs] = lhs[#lhs]:gsub('%s+$', '')
+    rhs[1] = rhs[1]:gsub('^%s+', '')
 
-    table.insert(rhs, 1, "")
-    table.insert(lhs, "")
+    table.insert(rhs, 1, '')
+    table.insert(lhs, '')
   end
 
   return delimiters
@@ -423,14 +423,14 @@ M.get_change = function(char)
       }
     end
   end
-  return M.get_change("invalid_key_behavior")
+  return M.get_change('invalid_key_behavior')
 end
 
 -- Translates the user-provided surround.add into the internal form.
 ---@param user_add user_add The user-provided add key.
 ---@return false|add_func|nil @The translated add key.
 M.translate_add = function(user_add)
-  if type(user_add) ~= "table" then
+  if type(user_add) ~= 'table' then
     return user_add
   end
   -- If the input is given as a pair of strings, or pair of string lists, wrap it in a function
@@ -446,7 +446,7 @@ end
 ---@param user_find user_find The user-provided find key.
 ---@return false|find_func|nil @The translated find key.
 M.translate_find = function(user_find)
-  if type(user_find) ~= "string" then
+  if type(user_find) ~= 'string' then
     return user_find
   end
   -- Treat the string as a Lua pattern, and find the selection
@@ -460,7 +460,7 @@ end
 ---@param user_delete user_delete The user-provided delete key.
 ---@return false|delete_func|nil @The translated delete key.
 M.translate_delete = function(char, user_delete)
-  if type(user_delete) ~= "string" then
+  if type(user_delete) ~= 'string' then
     return user_delete
   end
   -- Treat the string as a Lua pattern, and find the selection
@@ -474,7 +474,7 @@ end
 ---@param user_change user_change|nil The user-provided change key.
 ---@return false|change_table|nil @The translated change key.
 M.translate_change = function(char, user_change)
-  if type(user_change) ~= "table" then
+  if type(user_change) ~= 'table' then
     return user_change
   end
   return {
@@ -511,7 +511,7 @@ M.translate_invalid_key_behavior = function(invalid_surround)
       target = function() end,
     },
   }
-  local invalid = M.translate_surround("invalid_key_behavior", invalid_surround)
+  local invalid = M.translate_surround('invalid_key_behavior', invalid_surround)
   if invalid == false then
     return noop_surround
   end
@@ -540,8 +540,8 @@ end
 M.translate_opts = function(user_opts)
   local opts = {}
   for key, value in pairs(user_opts) do
-    if key == "surrounds" then
-    elseif key == "indent_lines" then
+    if key == 'surrounds' then
+    elseif key == 'indent_lines' then
       opts[key] = value or function() end
     else
       opts[key] = value
@@ -556,8 +556,8 @@ M.translate_opts = function(user_opts)
     -- Support Vim's notation for special characters
     char = vim.api.nvim_replace_termcodes(char, true, true, true)
     -- Special case translation for `invalid_key_behavior`
-    if type(user_surround) ~= "nil" then
-      if char == "invalid_key_behavior" then
+    if type(user_surround) ~= 'nil' then
+      if char == 'invalid_key_behavior' then
         opts.surrounds[char] = M.translate_invalid_key_behavior(user_surround)
       else
         opts.surrounds[char] = M.translate_surround(char, user_surround)
@@ -573,7 +573,7 @@ end
 ---@return options The merged options.
 M.merge_opts = function(base_opts, new_opts)
   new_opts = new_opts or {}
-  local opts = vim.tbl_deep_extend("force", base_opts, M.translate_opts(new_opts))
+  local opts = vim.tbl_deep_extend('force', base_opts, M.translate_opts(new_opts))
   return opts
 end
 
@@ -588,7 +588,7 @@ M.set_keymap = function(args)
     end
     -- Otherwise disable the global keymap
     args.lhs = M.user_opts.keymaps[args.name]
-    args.rhs = "<NOP>"
+    args.rhs = '<NOP>'
   end
   vim.keymap.set(args.mode, args.lhs, args.rhs, args.opts)
 end
@@ -598,134 +598,134 @@ end
 M.set_keymaps = function(args)
   -- Set up <Plug> keymaps
   M.set_keymap({
-    mode = "i",
-    lhs = "<Plug>(nvim-surround-insert)",
+    mode = 'i',
+    lhs = '<Plug>(nvim-surround-insert)',
     rhs = function()
-      require("nvim-surround").insert_surround({ line_mode = false })
+      require('nvim-surround').insert_surround({ line_mode = false })
     end,
     opts = {
       buffer = args.buffer,
-      desc = "Add a surrounding pair around the cursor (insert mode)",
+      desc = 'Add a surrounding pair around the cursor (insert mode)',
       silent = true,
     },
   })
   M.set_keymap({
-    mode = "i",
-    lhs = "<Plug>(nvim-surround-insert-line)",
+    mode = 'i',
+    lhs = '<Plug>(nvim-surround-insert-line)',
     rhs = function()
-      require("nvim-surround").insert_surround({ line_mode = true })
+      require('nvim-surround').insert_surround({ line_mode = true })
     end,
     opts = {
       buffer = args.buffer,
-      desc = "Add a surrounding pair around the cursor, on new lines (insert mode)",
+      desc = 'Add a surrounding pair around the cursor, on new lines (insert mode)',
       silent = true,
     },
   })
   M.set_keymap({
-    mode = "n",
-    lhs = "<Plug>(nvim-surround-normal)",
+    mode = 'n',
+    lhs = '<Plug>(nvim-surround-normal)',
     rhs = function()
-      return require("nvim-surround").normal_surround({ line_mode = false })
+      return require('nvim-surround').normal_surround({ line_mode = false })
     end,
     opts = {
       buffer = args.buffer,
-      desc = "Add a surrounding pair around a motion (normal mode)",
+      desc = 'Add a surrounding pair around a motion (normal mode)',
       expr = true,
       silent = true,
     },
   })
   M.set_keymap({
-    mode = "n",
-    lhs = "<Plug>(nvim-surround-normal-cur)",
+    mode = 'n',
+    lhs = '<Plug>(nvim-surround-normal-cur)',
     rhs = function()
-      return "^" .. tostring(vim.v.count1) .. "<Plug>(nvim-surround-normal)g_"
+      return '^' .. tostring(vim.v.count1) .. '<Plug>(nvim-surround-normal)g_'
     end,
     opts = {
       buffer = args.buffer,
-      desc = "Add a surrounding pair around the current line (normal mode)",
+      desc = 'Add a surrounding pair around the current line (normal mode)',
       expr = true,
       silent = true,
     },
   })
   M.set_keymap({
-    mode = "n",
-    lhs = "<Plug>(nvim-surround-normal-line)",
+    mode = 'n',
+    lhs = '<Plug>(nvim-surround-normal-line)',
     rhs = function()
-      return require("nvim-surround").normal_surround({ line_mode = true })
+      return require('nvim-surround').normal_surround({ line_mode = true })
     end,
     opts = {
       buffer = args.buffer,
-      desc = "Add a surrounding pair around a motion, on new lines (normal mode)",
+      desc = 'Add a surrounding pair around a motion, on new lines (normal mode)',
       expr = true,
       silent = true,
     },
   })
   M.set_keymap({
-    mode = "n",
-    lhs = "<Plug>(nvim-surround-normal-cur-line)",
+    mode = 'n',
+    lhs = '<Plug>(nvim-surround-normal-cur-line)',
     rhs = function()
-      return "^" .. tostring(vim.v.count1) .. "<Plug>(nvim-surround-normal-line)g_"
+      return '^' .. tostring(vim.v.count1) .. '<Plug>(nvim-surround-normal-line)g_'
     end,
     opts = {
       buffer = args.buffer,
-      desc = "Add a surrounding pair around the current line, on new lines (normal mode)",
+      desc = 'Add a surrounding pair around the current line, on new lines (normal mode)',
       expr = true,
       silent = true,
     },
   })
   M.set_keymap({
-    mode = "x",
-    lhs = "<Plug>(nvim-surround-visual)",
+    mode = 'x',
+    lhs = '<Plug>(nvim-surround-visual)',
     rhs = "<Esc><Cmd>lua require'nvim-surround'.visual_surround({ line_mode = false })<CR>",
     opts = {
       buffer = args.buffer,
-      desc = "Add a surrounding pair around a visual selection",
+      desc = 'Add a surrounding pair around a visual selection',
       silent = true,
     },
   })
   M.set_keymap({
-    mode = "x",
-    lhs = "<Plug>(nvim-surround-visual-line)",
+    mode = 'x',
+    lhs = '<Plug>(nvim-surround-visual-line)',
     rhs = "<Esc><Cmd>lua require'nvim-surround'.visual_surround({ line_mode = true })<CR>",
     opts = {
       buffer = args.buffer,
-      desc = "Add a surrounding pair around a visual selection, on new lines",
+      desc = 'Add a surrounding pair around a visual selection, on new lines',
       silent = true,
     },
   })
   M.set_keymap({
-    mode = "n",
-    lhs = "<Plug>(nvim-surround-delete)",
-    rhs = require("nvim-surround").delete_surround,
+    mode = 'n',
+    lhs = '<Plug>(nvim-surround-delete)',
+    rhs = require('nvim-surround').delete_surround,
     opts = {
       buffer = args.buffer,
-      desc = "Delete a surrounding pair",
+      desc = 'Delete a surrounding pair',
       expr = true,
       silent = true,
     },
   })
   M.set_keymap({
-    mode = "n",
-    lhs = "<Plug>(nvim-surround-change)",
+    mode = 'n',
+    lhs = '<Plug>(nvim-surround-change)',
     rhs = function()
-      return require("nvim-surround").change_surround({ line_mode = false })
+      return require('nvim-surround').change_surround({ line_mode = false })
     end,
     opts = {
       buffer = args.buffer,
-      desc = "Change a surrounding pair",
+      desc = 'Change a surrounding pair',
       expr = true,
       silent = true,
     },
   })
   M.set_keymap({
-    mode = "n",
-    lhs = "<Plug>(nvim-surround-change-line)",
+    mode = 'n',
+    lhs = '<Plug>(nvim-surround-change-line)',
     rhs = function()
-      return require("nvim-surround").change_surround({ line_mode = true })
+      return require('nvim-surround').change_surround({ line_mode = true })
     end,
     opts = {
       buffer = args.buffer,
-      desc = "Change a surrounding pair, putting replacements on new lines",
+      desc = 'Change a surrounding pair, putting replacements on new lines',
       expr = true,
       silent = true,
     },
@@ -733,102 +733,102 @@ M.set_keymaps = function(args)
 
   -- Set up user-defined keymaps
   M.set_keymap({
-    name = "insert",
-    mode = "i",
+    name = 'insert',
+    mode = 'i',
     lhs = M.get_opts().keymaps.insert,
-    rhs = "<Plug>(nvim-surround-insert)",
+    rhs = '<Plug>(nvim-surround-insert)',
     opts = {
-      desc = "Add a surrounding pair around the cursor (insert mode)",
+      desc = 'Add a surrounding pair around the cursor (insert mode)',
     },
   })
   M.set_keymap({
-    name = "insert_line",
-    mode = "i",
+    name = 'insert_line',
+    mode = 'i',
     lhs = M.get_opts().keymaps.insert_line,
-    rhs = "<Plug>(nvim-surround-insert-line)",
+    rhs = '<Plug>(nvim-surround-insert-line)',
     opts = {
-      desc = "Add a surrounding pair around the cursor, on new lines (insert mode)",
+      desc = 'Add a surrounding pair around the cursor, on new lines (insert mode)',
     },
   })
   M.set_keymap({
-    name = "normal",
-    mode = "n",
+    name = 'normal',
+    mode = 'n',
     lhs = M.get_opts().keymaps.normal,
-    rhs = "<Plug>(nvim-surround-normal)",
+    rhs = '<Plug>(nvim-surround-normal)',
     opts = {
-      desc = "Add a surrounding pair around a motion (normal mode)",
+      desc = 'Add a surrounding pair around a motion (normal mode)',
     },
   })
   M.set_keymap({
-    name = "normal_cur",
-    mode = "n",
+    name = 'normal_cur',
+    mode = 'n',
     lhs = M.get_opts().keymaps.normal_cur,
-    rhs = "<Plug>(nvim-surround-normal-cur)",
+    rhs = '<Plug>(nvim-surround-normal-cur)',
     opts = {
-      desc = "Add a surrounding pair around the current line (normal mode)",
+      desc = 'Add a surrounding pair around the current line (normal mode)',
     },
   })
   M.set_keymap({
-    name = "normal_line",
-    mode = "n",
+    name = 'normal_line',
+    mode = 'n',
     lhs = M.get_opts().keymaps.normal_line,
-    rhs = "<Plug>(nvim-surround-normal-line)",
+    rhs = '<Plug>(nvim-surround-normal-line)',
     opts = {
-      desc = "Add a surrounding pair around a motion, on new lines (normal mode)",
+      desc = 'Add a surrounding pair around a motion, on new lines (normal mode)',
     },
   })
   M.set_keymap({
-    name = "normal_cur_line",
-    mode = "n",
+    name = 'normal_cur_line',
+    mode = 'n',
     lhs = M.get_opts().keymaps.normal_cur_line,
-    rhs = "<Plug>(nvim-surround-normal-cur-line)",
+    rhs = '<Plug>(nvim-surround-normal-cur-line)',
     opts = {
-      desc = "Add a surrounding pair around the current line, on new lines (normal mode)",
+      desc = 'Add a surrounding pair around the current line, on new lines (normal mode)',
     },
   })
   M.set_keymap({
-    name = "visual",
-    mode = "x",
+    name = 'visual',
+    mode = 'x',
     lhs = M.get_opts().keymaps.visual,
-    rhs = "<Plug>(nvim-surround-visual)",
+    rhs = '<Plug>(nvim-surround-visual)',
     opts = {
-      desc = "Add a surrounding pair around a visual selection",
+      desc = 'Add a surrounding pair around a visual selection',
     },
   })
   M.set_keymap({
-    name = "visual_line",
-    mode = "x",
+    name = 'visual_line',
+    mode = 'x',
     lhs = M.get_opts().keymaps.visual_line,
-    rhs = "<Plug>(nvim-surround-visual-line)",
+    rhs = '<Plug>(nvim-surround-visual-line)',
     opts = {
-      desc = "Add a surrounding pair around a visual selection, on new lines",
+      desc = 'Add a surrounding pair around a visual selection, on new lines',
     },
   })
   M.set_keymap({
-    name = "delete",
-    mode = "n",
+    name = 'delete',
+    mode = 'n',
     lhs = M.get_opts().keymaps.delete,
-    rhs = "<Plug>(nvim-surround-delete)",
+    rhs = '<Plug>(nvim-surround-delete)',
     opts = {
-      desc = "Delete a surrounding pair",
+      desc = 'Delete a surrounding pair',
     },
   })
   M.set_keymap({
-    name = "change",
-    mode = "n",
+    name = 'change',
+    mode = 'n',
     lhs = M.get_opts().keymaps.change,
-    rhs = "<Plug>(nvim-surround-change)",
+    rhs = '<Plug>(nvim-surround-change)',
     opts = {
-      desc = "Change a surrounding pair",
+      desc = 'Change a surrounding pair',
     },
   })
   M.set_keymap({
-    name = "change",
-    mode = "n",
+    name = 'change',
+    mode = 'n',
     lhs = M.get_opts().keymaps.change_line,
-    rhs = "<Plug>(nvim-surround-change-line)",
+    rhs = '<Plug>(nvim-surround-change-line)',
     opts = {
-      desc = "Change a surrounding pair, putting replacements on new lines",
+      desc = 'Change a surrounding pair, putting replacements on new lines',
     },
   })
 end
@@ -841,13 +841,13 @@ M.setup = function(user_opts)
   M.set_keymaps({ buffer = false })
   -- Configure highlight group, if necessary
   if M.user_opts.highlight.duration then
-    vim.cmd.highlight("default link NvimSurroundHighlight Visual")
+    vim.cmd.highlight('default link NvimSurroundHighlight Visual')
   end
   -- Intercept dot repeat action, remembering cursor position
-  local buffer = require("nvim-surround.buffer")
-  local nvim_surround = require("nvim-surround")
+  local buffer = require('nvim-surround.buffer')
+  local nvim_surround = require('nvim-surround')
   vim.on_key(function(key)
-    if key == "." and not nvim_surround.pending_surround then
+    if key == '.' and not nvim_surround.pending_surround then
       nvim_surround.normal_curpos = buffer.get_curpos()
     end
   end)

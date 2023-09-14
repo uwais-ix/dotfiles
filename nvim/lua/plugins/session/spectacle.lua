@@ -1,7 +1,7 @@
 return {
-	"RutaTang/spectacle.nvim",
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-		"nvim-telescope/telescope.nvim",
-	},
+  'RutaTang/spectacle.nvim',
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'nvim-telescope/telescope.nvim',
+  },
 }

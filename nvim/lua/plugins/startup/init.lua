@@ -1,3 +1,3 @@
 return {
-  require('plugins.startup.alphavim')
+  require('plugins.startup.alphavim'),
 }

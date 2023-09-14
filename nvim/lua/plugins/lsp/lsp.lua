@@ -1,6 +1,4 @@
 return {
   'neovim/nvim-lspconfig',
-  configure = function ()
-    
-  end
+  configure = function() end,
 }

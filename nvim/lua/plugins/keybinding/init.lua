@@ -1,3 +1,3 @@
 return {
-  require("plugins.keybinding.whichkey"),
+  require('plugins.keybinding.whichkey'),
 }

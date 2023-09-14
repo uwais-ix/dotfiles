@@ -1,4 +1,4 @@
 return {
   require('plugins.colorscheme.colorschemes'),
-  require('plugins.colorscheme.themery')
+  require('plugins.colorscheme.themery'),
 }
