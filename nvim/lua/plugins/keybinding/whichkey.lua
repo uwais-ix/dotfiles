@@ -17,7 +17,7 @@ return {
         q = {
           name = 'close',
           w = { 'close all buffers: keep layout', noremap = false },
-          a = { '<cmd>wall<CR> <cmd>bufdo  :Bdelete <CR>', 'save & close all buffers: discard layout' },
+          a = { '<cmd>wall<CR> <cmd>bufdo  :bdelete <CR>', 'save & close all buffers: discard layout' },
           q = { '<cmd>wall|qa!<CR>', 'save & exit', noremap = false },
           n = { 'close buffers w/ no windows' },
         },
@@ -39,12 +39,21 @@ return {
           l = { '<cmd>Lazy<CR>', 'lazy' },
           m = { '<cmd>Mason<CR>', 'mason' },
         },
-        d = {
+        i = {
           name = 'diagnostic',
-          ['<space>'] = { '<cmd>lua vim.diagnostic.open_float()<CR>', 'open float', noremap = false },
           n = { '<cmd>lua nvim.diagnostic.goto_next()<CR>', 'next diag', noremap = false },
           p = { '<cmd>lua nvim.diagnostic.goto_prev()<CR>', 'prev diag', noremap = false },
           l = { '<cmd>lua nvim.diagnostic.setloclist()<CR>', 'list diag', noremap = false },
+        },
+        d = {
+          name = 'dap',
+          ['so'] = { '<cmd>DapStepOver<CR>', 'dap: step over', noremap = false },
+          ['si'] = { '<cmd>DapStepInto<CR>', 'dap: step into', noremap = false },
+          ['sx'] = { '<cmd>DapStepOut<CR>', 'dap: step out', noremap = false },
+          x = { '<cmd>DapTerminate<CR>', 'dap: terminate', noremap = false },
+          b = { '<cmd>DapToggleBreakpoint<CR>', 'dap: toggle breakpoint', noremap = false },
+          B = { '<cmd>lua require("dap").set_breakpoint()<CR>', 'dap: set breakpoint', noremap = false },
+          t = { '<cmd>lua require("dapui").toggle()<CR>', 'dap-ui: toggle', noremap = false },
         },
         -- s = {
         -- 	name = "session",
@@ -78,10 +87,11 @@ return {
         f = { 'format' },
         D = { 'type definition' },
         t = { '<cmd>TermSelect<CR>', 'terminal: select', noremap = false },
+        h = { '<cmd>TroubleToggle<CR>', 'trouble: toggle', noremap = false },
         ['rn'] = { 'buffer rename' },
         ['ca'] = { 'code action' },
-        [' '] = { '<cmd>ToggleTermSetName<CR>', 'terminal: rename', noremap = false, mode = 't' },
         x = { '<cmd>w|bdelete<CR>', 'close: write | buffer delete', noremap = false },
+        ['<space>'] = { '<cmd>lua vim.diagnostic.open_float()<CR>', 'open float', noremap = false },
       },
       g = {
         name = 'goto',

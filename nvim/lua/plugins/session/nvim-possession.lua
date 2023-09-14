@@ -17,7 +17,9 @@ return {
         enable = true,
         -- exclude_ft = {},
       },
-      save_hook = function() end,
+      save_hook = function()
+        require('dapui').close()
+      end,
       post_hook = function()
         vim.cmd('NvimTreeToggle')
         -- vim.cmd("ToggleTerm")
