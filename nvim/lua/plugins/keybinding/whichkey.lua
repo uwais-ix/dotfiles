@@ -12,8 +12,9 @@ return {
   },
   config = function()
     require('which-key').register({
+      -- leader --
       ['<leader>'] = {
-        ['`'] = { 'neoclip' },
+        -- close --
         q = {
           name = 'close',
           w = { 'close all buffers: keep layout', noremap = false },
@@ -29,7 +30,6 @@ return {
         ['<leader>'] = {
           name = 'other',
           ['?'] = { '<cmd>Cheatsheet<CR>', 'cheatsheet', noremap = false },
-          n = { '<cmd>nohl<CR>', 'nohl', noremap = false },
           t = { '<cmd>Themery<CR>', 'themery', noremap = false },
           i = {
             name = 'info',
@@ -38,13 +38,14 @@ return {
           },
           l = { '<cmd>Lazy<CR>', 'lazy' },
           m = { '<cmd>Mason<CR>', 'mason' },
+          w = {
+            name = 'workspace',
+            a = { 'workspace: add folder' },
+            r = { 'workspace: remove folder' },
+            l = { 'workspace: list folder' },
+          },
         },
-        i = {
-          name = 'diagnostic',
-          n = { '<cmd>lua nvim.diagnostic.goto_next()<CR>', 'next diag', noremap = false },
-          p = { '<cmd>lua nvim.diagnostic.goto_prev()<CR>', 'prev diag', noremap = false },
-          l = { '<cmd>lua nvim.diagnostic.setloclist()<CR>', 'list diag', noremap = false },
-        },
+        -- dap --
         d = {
           name = 'dap',
           ['so'] = { '<cmd>DapStepOver<CR>', 'dap: step over', noremap = false },
@@ -55,19 +56,22 @@ return {
           B = { '<cmd>lua require("dap").set_breakpoint()<CR>', 'dap: set breakpoint', noremap = false },
           t = { '<cmd>lua require("dapui").toggle()<CR>', 'dap-ui: toggle', noremap = false },
         },
-        -- s = {
-        -- 	name = "session",
-        -- 	l = { "list session", noremap = false },
-        -- 	n = { "new session", noremap = false },
-        -- 	d = { "delete session", noremap = false },
-        -- 	u = { "update session", noremap = false },
-        -- },
+        -- session --
+        s = {
+          name = 'session',
+          l = { 'list session', noremap = false },
+          n = { 'new session', noremap = false },
+          d = { 'delete session', noremap = false },
+          u = { 'update session', noremap = false },
+        },
+        -- find --
         f = {
-          name = 'file',
+          name = '+find',
           f = { '<cmd>Telescope find_files<CR>', 'find files' },
           g = { '<cmd>Telescope git_files<CR>', 'git files' },
-          s = { '<cmd>Telescope live_grep<CR>', 'grep' },
+          ['<space>'] = { '<cmd>Telescope live_grep<CR>', 'grep' },
         },
+        -- terminal --
         t = {
           name = 'terminal',
           b = { "<cmd>lua _uwais_toggleterm('btop')<CR>", 'toggle btop', noremap = false },
@@ -78,21 +82,40 @@ return {
           r = { '<cmd>ToggleTermSetName<CR>', 'terminal: rename', noremap = false },
         },
       },
-      [' '] = {
+      -- space --
+      ['<space>'] = {
         w = { '<cmd>wa<CR>', 'save', noremap = false },
         p = { '<cmd>BufferLinePick<CR>', 'buffer: pick', noremap = false },
-        q = { '<cmd>BufferLinePickClose<CR>', 'buffer: pick close', noremap = false },
+        q = { '<cmd>wa|BufferLinePickClose<CR>', 'buffer: pick close', noremap = false },
         v = { '<C-W>v', 'vertical split', noremap = false },
         s = { '<C-W>s', 'horizontal split', noremap = false },
         f = { 'format' },
         D = { 'type definition' },
-        t = { '<cmd>TermSelect<CR>', 'terminal: select', noremap = false },
+        ['<leader>'] = { '<cmd>TermSelect<CR>', 'terminal: select', noremap = false },
         h = { '<cmd>TroubleToggle<CR>', 'trouble: toggle', noremap = false },
+        t = {
+          'telescope',
+          r = { '<cmd>Telescope registers initial_mode=normal<CR>', 'telescope: registers' },
+          d = { '<cmd>Telescope diagnostics initial_mode=normal<CR>', 'telescope: diagnostic' },
+          b = { '<cmd>Telescope buffers initial_mode=normal<CR>', 'telescope: buffers' },
+          s = {
+            'symbols',
+            w = { '<cmd>Telescope lsp_workspace_symbols initial_mode=normal<CR>', 'workspace symbols' },
+            d = { '<cmd>Telescope lsp_document_symbols initial_mode=normal<CR>', 'document symbols' },
+          },
+          t = { '<cmd>Telescope<CR>', 'telescope' },
+          a = {
+            name = 'agrolens: todo',
+            f = { '<cmd> Telescope agrolens query=functions initial_mode=normal' },
+            fa = { '<cmd> Telescope agrolens query=functions buffers=all initial_mode=normal' },
+          },
+        },
         ['rn'] = { 'buffer rename' },
         ['ca'] = { 'code action' },
-        x = { '<cmd>w|bdelete<CR>', 'close: write | buffer delete', noremap = false },
+        x = { '<cmd>w|Bdelete<CR>', 'close: write | buffer delete', noremap = false },
         ['<space>'] = { '<cmd>lua vim.diagnostic.open_float()<CR>', 'open float', noremap = false },
       },
+      -- goto --
       g = {
         name = 'goto',
         D = { 'goto declaration' },

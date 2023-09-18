@@ -5,18 +5,16 @@ return {
     local formatting = null_ls.builtins.formatting
     local diagnostics = null_ls.builtins.diagnostics
     local completion = null_ls.builtins.completion
+    local codeactions = null_ls.builtins.code_actions
 
     null_ls.setup({
       sources = {
-        formatting.prettier.with({
-          extra_args = { '', '--no-semi=true', '--single-quote=true', '--jsx-single-quote' },
-        }),
+        formatting.prettierd.with({}),
         formatting.black.with({ extra_args = { '--fast' } }),
         formatting.stylua.with({
           extra_args = { '--indent-type=Spaces', '--quote-style=AutoPreferSingle', '--indent-width=2' },
         }),
-        -- diagnostics.eslint,
-        -- completion.spell
+        codeactions.eslint_d.with({}),
       },
     })
   end,

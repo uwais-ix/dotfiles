@@ -10,7 +10,7 @@ return {
       dashboard.button('<leader>sl', '󰺿  Sessions'),
       dashboard.button('<C-p>', '󰺿  Projects'),
       dashboard.button('<leader>ff', '󰈞  Find File'),
-      dashboard.button('<leader>gg', '󰊄  Grep'),
+      dashboard.button('<leader>gg', '󰈭  Grep'),
     }
 
     alpha.setup(dashboard.config)

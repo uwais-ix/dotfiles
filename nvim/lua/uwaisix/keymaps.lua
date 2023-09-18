@@ -1,15 +1,13 @@
 local opts = { noremap = true, silent = true }
 local keymap = vim.keymap.set
 
--- keymap("n", "<leader> ", vim.cmd.Ex, opts)
--- keymap("n", "<leader>e", ":Lex 30<CR>", opts)
--- keymap("n", "<leader>e", ":NvimTreeToggle<CR>")
--- keymap("n", "<leader><leader>", ":nohl<CR>", opts)
+-- nohl
+keymap('n', '<esc>', ':nohl<CR>', { noremap = false, silent = true })
+-- enter insert mode
+keymap('i', 'jk', '<esc>', { noremap = false })
+keymap('i', 'kj', '<esc>', { noremap = false })
 --
-keymap('i', 'jk', '<esc>', opts)
-keymap('i', 'kj', '<esc>', opts)
---
-
+-- nvim tree
 keymap('n', '<C-n>', ':NvimTreeFocus<CR>')
 --
 -- window
@@ -24,7 +22,14 @@ keymap('n', '<C-Left>', ':vertical resize -2<CR>', opts)
 keymap('n', '<C-Right>', ':vertical resize +2<CR>', opts)
 -- buffers
 keymap('n', '<S-l>', ':bnext<CR>', opts)
+keymap('n', '<Tab>', ':bnext<CR>', opts)
 keymap('n', '<S-h>', ':bprevious<CR>', opts)
+keymap('n', '<S-Tab>', ':bprevious<CR>', opts)
+--
+keymap('n', '<C-b>', '^', opts)
+keymap('n', '<C-e>', '$', opts)
+-- winodw
+keymap('n', 'qq', '<C-w>q', opts)
 -- end --
 
 -- visual --
@@ -34,6 +39,7 @@ keymap('v', 'K', ":m '<-2<CR>gv=gv", opts)
 -- stay in indent mode
 keymap('v', '>', '>gv', opts)
 keymap('v', '<', '<gv', opts)
+-- prevent copy item being paseted in visual mode
 keymap('v', 'p', '"_dP', opts)
 -- end --
 

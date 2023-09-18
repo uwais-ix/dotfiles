@@ -53,6 +53,8 @@ return {
     nvim_tree.setup({
       on_attach = my_on_attach,
       disable_netrw = true,
+      hijack_netrw = true,
+      sync_root_with_cwd = true,
       update_focused_file = {
         enable = true,
         update_cwd = true,
@@ -74,11 +76,11 @@ return {
               symlink_open = '',
             },
             git = {
-              unstaged = '',
-              staged = 'S',
-              unmerged = '',
+              unstaged = '✗',
+              staged = '✓',
+              unmerged = '',
               renamed = '➜',
-              untracked = 'U',
+              untracked = '★',
               deleted = '',
               ignored = '◌',
             },

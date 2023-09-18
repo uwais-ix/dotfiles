@@ -27,10 +27,10 @@ return {
         lualine_c = {
           { 'filename' },
           {
-            -- require('nvim-possession').status,
-            -- cond = function()
-            --   return require('nvim-possession').status() ~= nil
-            -- end
+            require('nvim-possession').status,
+            cond = function()
+              return require('nvim-possession').status() ~= nil
+            end,
           },
         },
         lualine_x = {
@@ -41,7 +41,6 @@ return {
               unix = '', -- e712
               dos = '', -- e70f
               mac = '', -- e711
-              Bot = '_',
             },
           },
           'filetype',

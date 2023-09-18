@@ -1,5 +1,4 @@
-return {
-  -- bg.nvim --
+return { -- bg.nvim --
   {
     'typicode/bg.nvim',
     lazy = false,
@@ -15,7 +14,7 @@ return {
   {
     'catppuccin/nvim',
     name = 'catppuccin',
-    init = function()
+    config = function()
       require('catppuccin').setup({
         flavour = 'mocha',
         -- background = { -- :h background
@@ -82,8 +81,11 @@ return {
         mason = false,
         mini = false,
         gitsigns = true,
-        whichkey = false,
+        which_key = false,
         neotree = false,
+        noice = false,
+        nvimtree = true,
+        notify = false,
       })
     end,
   },

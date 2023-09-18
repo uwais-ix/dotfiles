@@ -39,10 +39,9 @@ return {
         offsets = {
           {
             filetype = 'NvimTree',
-            -- text = function()
-            --   return vim.fn.getcwd()
-            -- end,
-            text = 'File Explorer',
+            text = function()
+              return vim.fn.getcwd()
+            end,
             highlight = 'Directory',
             separator = true,
             -- padding = 0,
