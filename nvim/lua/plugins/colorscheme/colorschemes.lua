@@ -35,22 +35,23 @@ return { -- bg.nvim --
         styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
           comments = { 'italic' }, -- Change the style of comments
           conditionals = { 'italic' },
-          loops = {},
-          functions = {},
-          keywords = {},
+          loops = { 'bold' },
+          functions = { 'bold' },
+          keywords = { 'italic' },
           strings = {},
           variables = {},
           numbers = {},
-          booleans = {},
-          properties = {},
+          booleans = { 'bold', 'italic' },
+          properties = { 'italic' },
           types = {},
-          operators = {},
+          operators = { 'bold' },
         },
         color_overrides = {},
         custom_highlights = {},
         integrations = {
           telescope = {
             enabled = true,
+            style = 'nvchad'
           },
           treesitter = true,
           alpha = true,
@@ -86,6 +87,8 @@ return { -- bg.nvim --
         noice = false,
         nvimtree = true,
         notify = false,
+        harpoon = false,
+        lsp_trouble = false,
       })
     end,
   },

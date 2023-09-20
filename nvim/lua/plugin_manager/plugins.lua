@@ -17,4 +17,5 @@ return {
   require('plugins.other'),
   require('plugins.git'),
   require('plugins.debugging'),
+  require('plugins.ai'),
 }

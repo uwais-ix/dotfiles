@@ -2,6 +2,16 @@ return {
   'nvim-telescope/telescope.nvim',
   tag = '0.1.2',
   dependencies = { 'nvim-lua/plenary.nvim' },
+
+  config = function()
+    require('telescope').setup({
+      defaults = {
+        prompt_prefix = '  ',
+        initial_mode = 'normal',
+      },
+    })
+  end,
+
   keys = {
     -- { '<leader>ff', function() require 'telescope.builtin'.find_files() end },
     -- { '<leader>fg', function() require 'telescope.builtin'.git_files() end },

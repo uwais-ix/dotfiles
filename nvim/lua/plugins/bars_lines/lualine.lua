@@ -6,11 +6,13 @@ return {
       options = {
         icons_enabled = true,
         theme = 'auto',
-        component_separators = { left = '', right = '' },
+        -- component_separators = { left = '', right = '' },
+        component_separators = { left = '|', right = '|' },
         section_separators = { left = '', right = '' },
         disabled_filetypes = {
           statusline = {},
           winbar = {},
+          'NvimTree',
         },
         ignore_focus = {},
         always_divide_middle = true,
@@ -38,7 +40,7 @@ return {
           {
             'fileformat',
             symbols = {
-              unix = '', -- e712
+              unix = '󰌽', -- e712
               dos = '', -- e70f
               mac = '', -- e711
             },

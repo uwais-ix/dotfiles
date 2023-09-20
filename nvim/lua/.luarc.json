@@ -1,9 +1,0 @@
-{
-    "workspace.library": [
-        "/home/uwaisix/.local/share/nvim/lazy/neodev.nvim/types/stable",
-        "/usr/share/nvim/runtime/lua",
-        "/home/uwaisix/.local/share/nvim/lazy/nvim-dap-ui/lua",
-        "/home/uwaisix/.config/nvim/lua",
-        "${3rd}/luv/library"
-    ]
-}

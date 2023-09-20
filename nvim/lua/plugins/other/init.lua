@@ -8,4 +8,6 @@ return {
   require('plugins.other.toggleterm'),
   require('plugins.other.dressing'),
   require('plugins.other.noice'),
+  require('plugins.other.specs'),
+  require('plugins.other.neoscroll'),
 }
