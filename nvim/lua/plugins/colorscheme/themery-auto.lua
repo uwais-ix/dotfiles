@@ -1,6 +1,9 @@
 vim.cmd("colorscheme default")
 -- Themery block
 -- This block will be replaced by Themery.
-vim.cmd("colorscheme catppuccin-mocha")
-vim.g.theme_id = 5
+vim.opt.background = "dark"
+
+
+vim.cmd("colorscheme oxocarbon")
+vim.g.theme_id = 11
 -- end themery block

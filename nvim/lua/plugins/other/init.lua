@@ -10,4 +10,10 @@ return {
   require('plugins.other.noice'),
   require('plugins.other.specs'),
   require('plugins.other.neoscroll'),
+  require('plugins.other.transparent'),
+  require('plugins.other.reach'),
+  require('plugins.other.flash'),
+  require('plugins.other.bufonly'),
+  require('plugins.other.instant'),
+  require('plugins.other.venn'),
 }

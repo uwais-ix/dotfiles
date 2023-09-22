@@ -53,7 +53,7 @@ return {
       window = {
         -- refer src/lua/config/window
         completion = cmp.config.window.bordered(),
-        documentation= cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
         -- documentation = cmp.config.window.bordered({
         --   border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
         -- }),
@@ -102,6 +102,7 @@ return {
         fields = { 'kind', 'abbr', 'menu' },
         format = function(entry, vim_item)
           -- Kind icons
+          require('tailwindcss-colorizer-cmp').formatter(entry, vim_item)
           vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
           vim_item.menu = ({
             nvim_lua = '[NVIM_LUA]',

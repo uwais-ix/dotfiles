@@ -1,9 +1,4 @@
-return { -- bg.nvim --
-  {
-    'typicode/bg.nvim',
-    lazy = false,
-  },
-  --
+return {
   {
     'AlphaTechnolog/pywal.nvim',
     name = 'pywal',
@@ -51,7 +46,7 @@ return { -- bg.nvim --
         integrations = {
           telescope = {
             enabled = true,
-            style = 'nvchad'
+            style = 'nvchad',
           },
           treesitter = true,
           alpha = true,
@@ -93,29 +88,27 @@ return { -- bg.nvim --
     end,
   },
   {
-    'rose-pine/nvim',
-    name = 'rose-pine',
-  },
-  {
-    'lunarvim/colorschemes',
-  },
-  {
-    'folke/tokyonight.nvim',
+    'olivercederborg/poimandres.nvim',
     lazy = false,
+    priority = 1000,
+    config = function()
+      require('poimandres').setup({
+        -- leave this setup function empty for default config
+        -- or refer to the configuration section
+        -- for configuration options
+      })
+    end,
   },
-  {
-    'elianiva/icy.nvim',
-  },
-  {
-    'kvrohit/mellow.nvim',
-  },
-  {
-    'cseelus/nvim-colors-tone',
-  },
-  {
-    'Koalhack/koalight.nvim',
-  },
-  {
-    'nvimdev/paradox.vim',
-  },
+  { 'typicode/bg.nvim', lazy = false },
+  { 'rose-pine/nvim', name = 'rose-pine' },
+  { 'lunarvim/colorschemes' },
+  { 'folke/tokyonight.nvim', lazy = false },
+  { 'kvrohit/mellow.nvim' },
+  { 'cseelus/nvim-colors-tone' },
+  { 'nyoom-engineering/oxocarbon.nvim' },
+  { 'embark-theme/vim', name = 'embark' },
+  { 'Yazeed1s/oh-lucy.nvim' },
+  { 'Everblush/nvim', name = 'everblush' },
+  { 'frenzyexists/aquarium-vim' },
+  { 'yashguptaz/calvera-dark.nvim' },
 }

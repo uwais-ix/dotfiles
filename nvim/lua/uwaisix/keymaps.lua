@@ -8,7 +8,7 @@ keymap('i', 'jk', '<esc>', { noremap = false })
 keymap('i', 'kj', '<esc>', { noremap = false })
 --
 -- nvim tree
-keymap('n', '<C-n>', ':NvimTreeFocus<CR>')
+keymap('n', '<C-n>', ':NvimTreeFocus<CR>', opts)
 --
 -- window
 keymap('n', '<C-h>', '<C-w>h', opts)
@@ -56,6 +56,7 @@ function _G.set_terminal_keymaps()
 end
 
 require('plugins.keybinding.term_bindings')
+require('plugins.keybinding.venn')
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')

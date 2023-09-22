@@ -7,80 +7,59 @@ return {
       themeConfigFile = '~/.config/nvim/lua/plugins/colorscheme/themery-auto.lua',
       themes = {
         {
+          colorscheme = 'aquarium',
+          name = 'aquarium',
+        },
+        {
+          colorscheme = 'calvera',
+          name = 'calvera',
+        },
+        {
           name = 'catppuccin',
           colorscheme = 'catppuccin',
-        },
-        {
-          name = 'catppuccin-frappe',
-          colorscheme = 'catppuccin-frappe',
-        },
-        {
-          name = 'catppuccin-latte',
-          colorscheme = 'catppuccin-latte',
-        },
-        {
-          name = 'catppuccin-macchiato',
-          colorscheme = 'catppuccin-macchiato',
         },
         {
           name = 'catppuccin-mocha',
           colorscheme = 'catppuccin-mocha',
         },
         {
-          name = 'icy',
-          colorscheme = 'icy',
+          name = 'embark',
+          colorscheme = 'embark',
         },
         {
-          name = 'koalight',
-          colorscheme = 'koalight',
-        },
-        {
-          name = 'lunar',
-          colorscheme = 'lunar',
+          name = 'everblush',
+          colorscheme = 'everblush',
         },
         {
           name = 'mellow',
           colorscheme = 'mellow',
         },
         {
-          name = 'onedark',
-          colorscheme = 'onedark',
+          name = 'oh-lucy',
+          colorscheme = 'oh-lucy',
         },
         {
-          name = 'onedarker',
-          colorscheme = 'onedarker',
-        },
-        {
-          name = 'onedarkest',
-          colorscheme = 'onedarkest',
+          name = 'oh-lucy-evening',
+          colorscheme = 'oh-lucy-evening',
         },
         {
           name = 'onenord',
           colorscheme = 'onenord',
         },
         {
-          name = 'paradox',
-          colorscheme = 'paradox',
+          name = 'oxocarbon',
+          colorscheme = 'oxocarbon',
+          before = [[
+            vim.opt.background = "dark"
+          ]],
         },
         {
-          name = 'peachpuff',
-          colorscheme = 'peachpuff',
+          name = 'poimandres',
+          colorscheme = 'poimandres',
         },
         {
           name = 'pywal',
           colorscheme = 'pywal',
-        },
-        {
-          name = 'quiet',
-          colorscheme = 'quiet',
-        },
-        {
-          name = 'rose-pine',
-          colorscheme = 'rose-pine',
-        },
-        {
-          name = 'rose-pine-dawn',
-          colorscheme = 'rose-pine-dawn',
         },
         {
           name = 'rose-pine-main',
@@ -89,18 +68,6 @@ return {
         {
           name = 'rose-pine-moon',
           colorscheme = 'rose-pine-moon',
-        },
-        {
-          name = 'tone',
-          colorscheme = 'tone',
-        },
-        {
-          name = 'tokyonight',
-          colorscheme = 'tokyonight',
-        },
-        {
-          name = 'tokyonight-day',
-          colorscheme = 'tokyonight-day',
         },
         {
           name = 'tokyonight-moon',
