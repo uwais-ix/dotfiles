@@ -16,4 +16,6 @@ return {
   require('plugins.other.bufonly'),
   require('plugins.other.instant'),
   require('plugins.other.venn'),
+  require('plugins.other.harpoon'),
+  -- require('plugins.other.gkeep'),
 }

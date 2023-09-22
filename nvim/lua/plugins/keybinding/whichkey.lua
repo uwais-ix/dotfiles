@@ -22,11 +22,6 @@ return {
           w = { 'close:  all buffers & keep layout', noremap = false },
           n = { 'close:  buffers w/ no windows' },
         },
-        h = {
-          name = 'harpoon',
-          o = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", 'open harpoon', noremap = false },
-          a = { "<cmd>lua require('harpoon.mark').add_file()<CR>", 'mark file', noremap = false },
-        },
         m = {
           name = 'muren',
           t = { '<cmd>MurenToggle<CR>', 'muren: toggle' },
@@ -135,7 +130,7 @@ return {
         v = { '<C-W>v', 'vertical split', noremap = false },
         s = { '<C-W>s', 'horizontal split', noremap = false },
         f = { 'format' },
-        p = { '<cmd>wa|BufferLinePickClose<CR>', 'close: pick buffer', noremap = false },
+        q = { '<cmd>wa|BufferLinePickClose<CR>', 'close: pick buffer', noremap = false },
         D = { 'type definition' },
         ['<leader>'] = { '<cmd>TermSelect<CR>', 'terminal: select', noremap = false },
         h = { '<cmd>TroubleToggle<CR>', 'trouble: toggle', noremap = false },
@@ -167,6 +162,11 @@ return {
         },
         x = { '<cmd>w|Bdelete<CR>', 'close: write | buffer delete', noremap = false },
         ['<space>'] = { '<cmd>lua vim.diagnostic.open_float()<CR>', 'open float', noremap = false },
+        m = {
+          name = 'harpoon',
+          m = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", 'open harpoon', noremap = false },
+          a = { "<cmd>lua require('harpoon.mark').add_file()<CR>", 'mark file', noremap = false },
+        },
       },
       -- goto --
       g = {
