@@ -1,0 +1,59 @@
+super + {shift,_} + Return
+	{kitty,alacritty}
+
+super + semicolon ; {f,semicolon,c}
+  {thunar,google-chrome-stable,code}
+
+super + {d,space,w}
+	rofi -show {drun,window,tabs}
+
+super + space
+  rofi -show window
+
+{XF86MonBrightnessUp,XF86MonBrightnessDown}
+  ~/scripts/archcraft/i3_brightness --{inc,dec}
+
+{XF86KbdBrightnessDown,XF86KbdBrightnessUp,XF86Launch3}
+  asusctl {-p,-n,aura -n}
+
+super + {Prior,Next,End}
+  picom-trans {-c +5,-c -1,-cr}
+
+Print + {super,_,control} 
+  ~/scripts/archcraft/i3_screenshot --{win,area,now}
+
+{XF86AudioRaiseVolume,XF86AudioLowerVolume,XF86AudioMute,XF86AudioMicMute}
+  ~/scripts/archcraft/i3_volume --{inc,dec,toggle,toggle-mic}
+
+{End,XF86AudioPrev,XF86AudioPlay,XF86AudioNext}
+  playerctl {play-pause,previous,play-pause,next}
+
+#temp
+#brightnessctl {s "+5",s "5-"}
+### picom
+# picom toggle
+### screenshots
+# fix this picom -- find alt app
+# area
+# win
+# now
+### misc
+# color picker
+# lock screen
+# wallpaper
+# set/change wal?
+# wal ?
+### apps
+# file manager
+# firefox
+# chrome
+# code
+# musicplayer
+# btop
+### rofi applets
+# rofi launcher
+# network menu
+# power menu
+# windows
+# music
+

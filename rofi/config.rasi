@@ -1,0 +1,58 @@
+configuration {
+  modes: "drun,window,windowcd,combi,run,ssh,tabs:~/scripts/rofi-chrome.sh";
+	font: "JetbrainsMono NerdFont 12";
+  icon-theme:"Papirus-Dark";
+  show-icons: true;
+	case-sensitive: false;
+	cycle: true;
+  // sidebar-mode: true;
+	hover-select: true;
+
+  //ssh
+  ssh-client: "ssh";
+  parse-hosts: true;
+
+  // run
+  run-command: "{cmd}";
+  run-list-command: "";
+  run-shell-command: "{terminal} -e {cmd}";
+
+  //
+  window-command: "wmctrl -i -R {window}";
+  // window-format: "{w} | {c}  | {t}";
+  // window-thumbnail: true;
+  window-match-fields: "all";
+
+  // drun
+  drun-match-fields: "name,generic,exec,categories,keywords";
+  drun-categories: "";
+  drun-show-actions: false;
+  drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+  drun-url-launcher: "xdg-open";
+
+//	combi-modes: "window,run";
+//	display-window: ;
+//	display-windowcd: ;
+//	display-run: ;
+//	display-ssh: ;
+//	display-drun: ;
+//	display-combi: ;
+//	display-keys: ;
+//	display-filebrowser: ;
+//	display-recursivebrowser: ;
+  timeout {
+      action: "kb-cancel";
+      delay:  30;
+  }
+  window {
+    close-on-delete: false;
+    // hide-active-window: true;
+    prefer-icon-theme: true;
+  }
+  inputchange {
+    action: "kb-row-first";
+  }
+}
+
+@import "bindings"
+@theme "catppuccin-default"

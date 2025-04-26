@@ -1,0 +1,20 @@
+super + apostrophe ; {f,b} 
+	i3-msg {floating,border} toggle
+ 
+super + apostrophe ; {s,t,d}
+	i3-msg layout {stacking,tabbed,default}
+
+super + backslash ; {r,m,g,s,l}
+	i3-msg mode {resize,move,gaps,save,restore}
+
+super + alt + {h,j,k,l}
+	i3-msg resize {shrink, shrink, grow, grow} {width, height, height, width} 5 px or 5 ppt
+
+control + super + alt + i ; {c,r,x}
+	i3-msg {reload,restart,exit}
+
+super + shift + {h,j,k,l}
+	i3-msg move {left,down,up,right}
+
+super + shift + {Left,Down,Up,Right}
+	i3-msg move {left,down,up,right}

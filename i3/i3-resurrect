@@ -1,0 +1,35 @@
+set $i3_resurrect i3-resurrect
+
+mode "save" {
+  bindsym z exec $i3_resurrect save -w 1; mode "default";
+  bindsym x exec $i3_resurrect save -w 2; mode "default";
+  bindsym c exec $i3_resurrect save -w 3; mode "default";
+  bindsym v exec $i3_resurrect save -w 4; mode "default";
+  bindsym b exec $i3_resurrect save -w 5; mode "default";
+  bindsym n exec $i3_resurrect save -w 6; mode "default";
+  bindsym m exec $i3_resurrect save -w 7; mode "default";
+  bindsym comma exec $i3_resurrect save -w 8; mode "default";
+  bindsym period exec $i3_resurrect save -w 9; mode "default";
+  bindsym slash exec $i3_resurrect save -w /; mode "default";
+  
+  # lol?
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+mode "restore" {
+  bindsym z exec $i3_resurrect restore -w 1; mode "default";
+  bindsym x exec $i3_resurrect restore -w 2; mode "default";
+  bindsym c exec $i3_resurrect restore -w 3; mode "default";
+  bindsym v exec $i3_resurrect restore -w 4; mode "default";
+  bindsym b exec $i3_resurrect restore -w 5; mode "default";
+  bindsym n exec $i3_resurrect restore -w 6; mode "default";
+  bindsym m exec $i3_resurrect restore -w 7; mode "default";
+  bindsym comma exec $i3_resurrect restore -w 8; mode "default";
+  bindsym period exec $i3_resurrect restore -w 9; mode "default";
+  bindsym slash exec $i3_resurrect restore -w /; mode "default";
+
+  # lol?
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}

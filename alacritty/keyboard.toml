@@ -1,0 +1,5 @@
+[keyboard]
+bindings=[
+  {key=":", mods="Shift|Control", mode="~Search", action="ToggleViMode"},
+  {key="P", mode="Vi|~Search",action="Paste"},
+]

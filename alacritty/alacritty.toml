@@ -1,0 +1,53 @@
+[general]
+import=[
+  "~/.config/alacritty/themes/catppuccin-mocha.toml",
+  "~/.config/alacritty/keyboard.toml",
+]
+live_config_reload=true
+ipc_socket=true
+
+[env]
+TERM="xterm-256color"
+
+[window]
+dynamic_padding=true
+
+[scrolling]
+history=100000
+
+[font]
+size=9.5
+[font.normal]
+family="JetbrainsMono NerdFont"
+
+[bell]
+duration=20
+command = { program = "paplay", args = ["/usr/share/sounds/freedesktop/stereo/device-added.oga"] }
+
+[selection]
+save_to_clipboard=true
+
+[cursor]
+# blinking="On"
+[cursor.vi_mode_style]
+shape="Block"
+
+[terminal]
+osc52="CopyPaste"
+
+[mouse]
+hide_when_typing=true
+
+[hints]
+alphabet="jfkdls;ahgurieowpq"
+[[hints.enabled]]
+command="xdg-open"
+# command={ program="cmd", args=["/c", "start", ""] } # on windows
+regex ="(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`\\\\]+"
+hyperlinks=true
+post_processing=true
+persist=false
+mouse.enabled=true
+# todo
+# binding = { key="q", mods="Control|Shift"}
+action="MoveViModeCursor"

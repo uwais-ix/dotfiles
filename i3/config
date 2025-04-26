@@ -1,0 +1,211 @@
+# modifier keys
+set $mod Mod4
+set $alt Mod1
+set $ctl Control
+set $shift Shift
+
+# monitor
+set $disp_int eDP-1-1
+set $disp_g27 DP-1-1
+
+# theme
+set $themes_folder ~/.config/i3/themes
+set $theme catppuccin-mocha
+
+# scripts
+set $scripts_folder ~/scripts
+
+# fonts
+set $fonts JetbrainsMono Nerd Font 14
+
+# gaps
+set $gaps_inner 8
+set $gaps_outer 5
+set $gaps_smart off
+
+# border
+set $border_size  1
+set $border_style normal
+
+# modes
+set $gaps_offset   5
+set $move_offset   10
+set $resize_offset 5 px or 5 ppt
+
+# layout
+set $layout tabbed
+
+# include + exec
+include $themes_folder/$theme
+include ~/.config/i3/i3-resurrect
+exec_always $scripts_folder/polybar.sh "i3"
+exec_always $scripts_folder/picom.sh
+exec_always $scripts_folder/dunst.sh
+exec_always --no-startup-id i3-autolayout autolayout
+exec_always --no-startup-id systemctl --user restart sxhkd-i3 || systemctl --user start sxhkd-i3 
+
+# for_window
+for_window [class=".*"] title_format "%class | %title"
+for_window [class=".*"] border $border_style $border_size
+for_window [all] 	title_window_icon off
+for_window [window_role="pop-up|task-dialog"] floating enabled
+for_window [class="Lxappearance|Kvantum Manager|qt5ct"] floating enabled
+
+# $
+floating_modifier $mod
+font pango:$fonts
+gaps inner $gaps_inner
+gaps outer $gaps_outer
+smart_gaps $gaps_smart
+
+# keybindings
+# focus
+bindsym $mod+l focus right
+bindsym $mod+h focus left
+bindsym $mod+k focus up
+bindsym $mod+j focus down
+
+bindsym $mod+Right focus right
+bindsym $mod+Left  focus left
+bindsym $mod+Up    focus up
+bindsym $mod+Down  focus down
+
+bindsym $mod+$ctl+l focus parent; focus right;
+bindsym $mod+$ctl+h focus parent; focus left;
+bindsym $mod+$ctl+k focus parent; focus up;
+bindsym $mod+$ctl+j focus parent; focus down;
+
+# ws
+workspace 1 output $disp_g27 $disp_int
+workspace 2 output $disp_g27 $disp_int
+workspace 3 output $disp_g27 $disp_int
+workspace 4 output $disp_g27 $disp_int
+workspace 5 output $disp_g27 $disp_int
+workspace 6 output $disp_g27 $disp_int
+workspace 7 output $disp_g27 $disp_int
+workspace 8 output $disp_g27 $disp_int
+workspace 9 output $disp_g27 $disp_int
+workspace / output $disp_int $disp_g27
+
+bindsym $mod+z workspace 1
+bindsym $mod+x workspace 2
+bindsym $mod+c workspace 3
+bindsym $mod+v workspace 4
+bindsym $mod+b workspace 5
+bindsym $mod+n workspace 6
+bindsym $mod+m workspace 7
+bindsym $mod+comma workspace 8
+bindsym $mod+period workspace 9
+bindsym $mod+slash workspace /
+
+bindsym $mod+$ctl+z move container to workspace 1; workspace 1;
+bindsym $mod+$ctl+x move container to workspace 2; workspace 2;
+bindsym $mod+$ctl+c move container to workspace 3; workspace 3;
+bindsym $mod+$ctl+v move container to workspace 4; workspace 4;
+bindsym $mod+$ctl+b move container to workspace 5; workspace 5;
+bindsym $mod+$ctl+n move container to workspace 6; workspace 6;
+bindsym $mod+$ctl+m move container to workspace 7; workspace 7;
+bindsym $mod+$ctl+comma move container to workspace 8; workspace 8;
+bindsym $mod+$ctl+period move container to workspace 9; workspace 9;
+bindsym $mod+$ctl+slash move container to workspace /; workspace /;
+
+bindsym Menu workspace back_and_forth
+bindsym $mod+Menu workspace next
+bindsym $mod+$ctl+Menu workspace prev
+
+
+# other bindings
+bindsym $mod+f fullscreen toggle
+bindsym $mod+q kill
+bindsym $mod+Tab focus next
+
+
+# other
+default_orientation auto
+focus_follows_mouse yes
+focus_on_window_activation smart
+force_display_urgency_hint 500 ms
+# force_xinerama yes
+hide_edge_borders smart
+mouse_warping none
+popup_during_fullscreen smart
+show_marks yes
+title_align center
+tiling_drag modifier titlebar
+workspace_auto_back_and_forth yes
+workspace_layout $layout
+
+# modes
+mode "resize" {
+        bindsym h resize shrink width  $resize_offset
+        bindsym j resize shrink height $resize_offset
+        bindsym l resize grow 	width  $resize_offset
+        bindsym k resize grow   height $resize_offset
+
+        # bindsym Up    resize grow height $resize_offset
+        # bindsym Right resize grow width  $resize_offset
+        # bindsym Down  resize shrink height $resize_offset
+        # bindsym Left  resize shrink width  $resize_offset
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "move" {
+  bindsym l move right $move_offset
+	bindsym h move left $move_offset
+	bindsym j move down  $move_offset
+	bindsym k move up    $move_offset
+
+	# bindsym Up    move up    $move_offset
+	# bindsym Down  move down  $move_offset
+	# bindsym Right move right $move_offset
+	# bindsym Left  move left  $move_offset
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "gaps" {
+	bindsym l gaps inner current plus  $gaps_offset 
+	bindsym h gaps inner current minus $gaps_offset 
+	bindsym k gaps outer current plus  $gaps_offset
+	bindsym j gaps outer current minus $gaps_offset 
+
+	bindsym Shift+l gaps inner all plus  $gaps_offset 
+	bindsym Shift+h gaps inner all minus $gaps_offset 
+	bindsym Shift+k gaps outer all plus  $gaps_offset
+	bindsym Shift+j gaps outer all minus $gaps_offset 
+
+	bindsym i gaps inner current set 0
+	bindsym o gaps outer current set 0
+
+	bindsym Shift+i gaps inner all set 0
+	bindsym Shift+o gaps outer all set 0
+
+	bindsym r       gaps inner current set $gaps_inner;gaps outer current set $gaps_outer;
+	bindsym Shift+r gaps inner all	   set $gaps_inner;gaps outer all     set $gaps_outer;
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+
+
+
+
+
+
+#temp
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+# exec --no-startup-id nm-applet
+# Use pactl to adjust volume in PulseAudio.
+# set $refresh_i3status killall -SIGUSR1 i3status
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
