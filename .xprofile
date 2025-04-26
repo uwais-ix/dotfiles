@@ -1,0 +1,9 @@
+#!/bin/bash
+
+xrdb -merge ~/.Xresources
+dex -a -s ~/.config/autostart
+autorandr --change &
+# dunst &
+wal=/home/uwaisix/sync/wallhaven/wallhaven-ymlv8x.jpg
+feh --bg-scale $wal
+xset dpms 3600 3600 3600
