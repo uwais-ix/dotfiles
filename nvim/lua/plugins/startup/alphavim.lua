@@ -8,7 +8,7 @@ return {
     dashboard.section.buttons.val = {
       dashboard.button('n', '  New File', '<cmd>ene <CR>'),
       dashboard.button('<leader>ff', '󰈞  Find File'),
-      dashboard.button('<leader>gg', '󰈭  Grep'),
+      dashboard.button('<leader>f<space>', '󰈭  Grep'),
       dashboard.button('r', '  Recent Files', '<cmd>Telescope oldfiles initial_mode=normal<CR>'),
       dashboard.button('<leader>sl', '  Sessions'),
       dashboard.button('<C-p>', '󱔘  Projects'),

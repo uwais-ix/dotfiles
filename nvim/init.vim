@@ -1,0 +1,1 @@
+/home/uwaisix/.zpwr/install/init.vim

@@ -4,7 +4,6 @@ return {
   themes = { 'catppuccin', 'rose-pine' },
   init = function()
     require('themery').setup({
-      themeConfigFile = '~/.config/nvim/lua/plugins/colorscheme/themery-auto.lua',
       themes = {
         {
           colorscheme = 'aquarium',

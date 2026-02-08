@@ -5,6 +5,7 @@ return {
   end,
   config = function()
     require('project_nvim').setup({
+
       -- Manual mode doesn't automatically change your root directory, so you have
       -- the option to manually do so using `:ProjectRoot` command.
       manual_mode = false,

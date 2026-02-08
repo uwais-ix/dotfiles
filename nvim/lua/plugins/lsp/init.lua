@@ -7,4 +7,5 @@ return {
   require('plugins.lsp.fidget'),
   require('plugins.lsp.goto'),
   require('plugins.lsp.docs_view'),
+  require('plugins.lsp.illuminate'),
 }

@@ -1,3 +1,9 @@
 require('plugin_manager')
-require('uwaisix.options')
-require('uwaisix.keymaps')
+
+if not vim.g.vscode then
+  require('uwaisix.options')
+  require('uwaisix.keymaps')
+else
+  require('uwaisix.vscode_options')
+end
+

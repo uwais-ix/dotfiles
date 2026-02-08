@@ -45,5 +45,11 @@ return {
     vim.api.nvim_set_keymap('n', 'j', 'j:lua require("specs").show_specs()<CR>', { noremap = true, silent = true })
     vim.api.nvim_set_keymap('n', 'l', 'l:lua require("specs").show_specs()<CR>', { noremap = true, silent = true })
     vim.api.nvim_set_keymap('n', 'h', 'h:lua require("specs").show_specs()<CR>', { noremap = true, silent = true })
+    vim.api.nvim_set_keymap('n', 'b', 'b:lua require("specs").show_specs()<CR>', { noremap = true, silent = true })
+    vim.api.nvim_set_keymap('n', 'B', 'B:lua require("specs").show_specs()<CR>', { noremap = true, silent = true })
+    vim.api.nvim_set_keymap('n', 'e', 'e:lua require("specs").show_specs()<CR>', { noremap = true, silent = true })
+    vim.api.nvim_set_keymap('n', 'E', 'E:lua require("specs").show_specs()<CR>', { noremap = true, silent = true })
+    vim.api.nvim_set_keymap('n', 'w', 'w:lua require("specs").show_specs()<CR>', { noremap = true, silent = true })
+    vim.api.nvim_set_keymap('n', 'W', 'W:lua require("specs").show_specs()<CR>', { noremap = true, silent = true })
   end,
 }

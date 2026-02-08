@@ -4,4 +4,6 @@ return {
   require('plugins.syntax.nvim-surround'),
   require('plugins.syntax.surround-ui'),
   require('plugins.syntax.agrolens'),
+  require('plugins.syntax.commentstring'),
+  require('plugins.syntax.kitty'),
 }

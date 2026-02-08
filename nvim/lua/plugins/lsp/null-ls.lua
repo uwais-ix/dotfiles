@@ -1,11 +1,15 @@
 return {
-  'jose-elias-alvarez/null-ls.nvim',
+  'nvimtools/none-ls.nvim',
+  dependencies = {
+    "nvimtools/none-ls-extras.nvim",
+  },
   config = function()
     local null_ls = require('null-ls')
     local formatting = null_ls.builtins.formatting
     local diagnostics = null_ls.builtins.diagnostics
     local completion = null_ls.builtins.completion
     local codeactions = null_ls.builtins.code_actions
+    local eslint = require("none-ls.diagnostics.eslint")
 
     null_ls.setup({
       sources = {
@@ -14,7 +18,9 @@ return {
         formatting.stylua.with({
           extra_args = { '--indent-type=Spaces', '--quote-style=AutoPreferSingle', '--indent-width=2' },
         }),
-        codeactions.eslint_d.with({}),
+        formatting.clang_format.with({}),
+        eslint.with({})
+        -- codeactions.eslint_d.with({}), @deprecated?
       },
     })
   end,

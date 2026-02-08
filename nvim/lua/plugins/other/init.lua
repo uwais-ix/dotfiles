@@ -8,7 +8,7 @@ return {
   require('plugins.other.toggleterm'),
   require('plugins.other.dressing'),
   require('plugins.other.noice'),
-  require('plugins.other.specs'),
+  -- require('plugins.other.specs'),
   require('plugins.other.neoscroll'),
   require('plugins.other.transparent'),
   require('plugins.other.reach'),
@@ -17,5 +17,7 @@ return {
   require('plugins.other.instant'),
   require('plugins.other.venn'),
   require('plugins.other.harpoon'),
+  require('plugins.other.suda'),
+  require('plugins.other.obsidian'),
   -- require('plugins.other.gkeep'),
 }

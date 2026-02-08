@@ -19,6 +19,7 @@ return {
       },
       save_hook = function()
         require('dapui').close()
+        vim.cmd('NvimTreeClose')
       end,
       post_hook = function()
         vim.cmd('NvimTreeToggle')

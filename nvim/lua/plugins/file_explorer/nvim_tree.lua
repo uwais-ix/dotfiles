@@ -53,11 +53,17 @@ return {
     nvim_tree.setup({
       on_attach = my_on_attach,
       disable_netrw = true,
-      hijack_netrw = true,
+      -- hijack_netrw = true,
       sync_root_with_cwd = true,
       update_focused_file = {
         enable = true,
         update_cwd = true,
+      },
+      filters = {
+	      dotfiles=false,
+      },
+      git = {
+        ignore=false,
       },
       renderer = {
         root_folder_modifier = ':t',
@@ -101,6 +107,8 @@ return {
         width = 30,
         side = 'left',
       },
+	
+
     })
   end,
 }

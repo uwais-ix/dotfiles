@@ -1,7 +1,7 @@
 -- bootstrap lazy vim --
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 
-if not vim.loop.fs_stat(lazypath) then
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
     'git',
     'clone',
@@ -15,6 +15,18 @@ vim.opt.rtp:prepend(lazypath)
 -- end --
 
 plugins = require('plugin_manager.plugins')
-opts = require('plugin_manager.opts')
+opts= require('plugin_manager.opts')
 
-require('lazy').setup(plugins, opts)
+
+function is_vscode()
+  return vim.g.vscode
+end
+
+-- require('lazy').setup(plugins, opts)
+require('lazy').setup(
+  {
+    { import = ('plugin_manager.plugins'), cond = not is_vscode() },
+    { import = ('plugin_manager.vscode'),  cond = is_vscode() },
+  },
+  opts
+)

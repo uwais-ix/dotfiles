@@ -12,6 +12,7 @@ return {
   },
   config = function()
     require('which-key').register({
+      -- ---------------------------------------------------------------------------------------------------
       -- leader --
       ['<leader>'] = {
         -- close --
@@ -55,8 +56,8 @@ return {
           ['?'] = {
             name = 'docs',
             ['?'] = { '<cmd>DocsViewToggle<CR>', 'docs-view: toggle', noremap = false },
-            o = { '<cmd>DevdocsOpen<CR>', 'devdocs: open' },
-            c = { '<cmd>DevdocsOpenCurrent<CR>', 'devdocs: open current' },
+            o = { '<cmd>DevdocsOpenFloat<CR>', 'devdocs: open' },
+            c = { '<cmd>DevdocsOpenCurrentFloat<CR>', 'devdocs: open current' },
           },
           t = { '<cmd>Themery<CR>', 'themery', noremap = false },
           d = { '<cmd>lua require("notify").dismiss()<CR>', 'notify: dismiss', noremap = true },
@@ -85,6 +86,10 @@ return {
             },
             m = { '<cmd>Nvimesweeper<CR>', 'minesweeper' },
           },
+          o = {
+            name = 'obsidian',
+            t = { '<cmd>ObsidianToday<CR>', 'today' }
+          }
         },
         -- dap --
         d = {
@@ -123,6 +128,7 @@ return {
           r = { '<cmd>ToggleTermSetName<CR>', 'terminal: rename', noremap = false },
         },
       },
+      -------------------------------------------------------------------------------------------
       -- space --
       ['<space>'] = {
         w = { '<cmd>wa<CR>', 'save', noremap = false },
@@ -133,7 +139,7 @@ return {
         q = { '<cmd>wa|BufferLinePickClose<CR>', 'close: pick buffer', noremap = false },
         D = { 'type definition' },
         ['<leader>'] = { '<cmd>TermSelect<CR>', 'terminal: select', noremap = false },
-        h = { '<cmd>TroubleToggle<CR>', 'trouble: toggle', noremap = false },
+        h = { '<cmd>Trouble<CR>', 'trouble: toggle', noremap = false },
         t = {
           'telescope',
           r = { '<cmd>Telescope registers initial_mode=normal<CR>', 'telescope: registers' },
@@ -151,6 +157,7 @@ return {
             fa = { '<cmd> Telescope agrolens query=functions buffers=all initial_mode=normal' },
           },
           u = { '<cmd>Telescope undo initial_mode=normal<CR>', 'document symbols' },
+          n = { '<cmd>Telescope notify<CR>', 'notify' }
         },
         ['rn'] = { 'buffer rename' },
         ['ca'] = { 'code action' },
