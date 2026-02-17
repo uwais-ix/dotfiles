@@ -89,6 +89,9 @@ return {
           o = {
             name = 'obsidian',
             t = { '<cmd>ObsidianToday<CR>', 'today' }
+          },
+          z = {
+            '<cmd>ZenMode<CR>', 'zenmode'
           }
         },
         -- dap --

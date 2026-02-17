@@ -19,5 +19,7 @@ return {
   require('plugins.other.harpoon'),
   require('plugins.other.suda'),
   require('plugins.other.obsidian'),
+  require('plugins.other.markdown'),
+  require('plugins.other.zen'),
   -- require('plugins.other.gkeep'),
 }
